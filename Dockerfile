@@ -1,4 +1,4 @@
-FROM node:yordanisyordanisperez/ubuntu-nvm-nodejs
+FROM node:yordanisperez/ubuntu-nvm-nodejs
 
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 
