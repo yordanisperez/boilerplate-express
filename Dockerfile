@@ -1,19 +1,27 @@
-FROM yordanisperez/ubuntu-nvm-nodejs
+# --------------> The build image
+FROM node:latest AS build
 
-# Create app directory
 WORKDIR /usr/src/app
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-COPY package*.json ./
+COPY package*.json /usr/src/app/
 
-RUN npm install
-# If you are building your code for production
-# RUN npm ci --only=production
+RUN npm ci --only=production
+ 
+# --------------> The production image
+FROM node:lts-alpine@sha256:fb6cb918cc72869bd625940f42a7d8ae035c4e786d08187b94e8b91c6a534dfd
 
-# Bundle app source
-#COPY . .
+RUN apk add dumb-init
+
+ENV NODE_ENV production
+
+USER node
+
+WORKDIR /usr/src/app
+
+COPY --chown=node:node --from=build /usr/src/app/node_modules /usr/src/app/node_modules
+
+COPY --chown=node:node . /usr/src/app
 
 EXPOSE 8080
-CMD [ "node", "server.js" ]
+
+CMD ["dumb-init", "node", "server.js"]
