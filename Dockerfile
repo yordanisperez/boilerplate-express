@@ -7,7 +7,7 @@ WORKDIR /home/app
 COPY package*.json ./
 
 # add `/usr/src/app/node_modules/.bin` to $PATH
-ENV PATH /usr/src/app/node_modules/.bin:$PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
 
 RUN npm install
