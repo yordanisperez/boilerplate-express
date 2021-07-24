@@ -10,7 +10,8 @@ RUN npm ci --only=production
 # --------------> The production image
 FROM node:lts-alpine@sha256:fb6cb918cc72869bd625940f42a7d8ae035c4e786d08187b94e8b91c6a534dfd
 
-RUN apk add dumb-init
+#RUN apk add dumb-init
+RUN npm install pm2 -g
 
 ENV NODE_ENV production
 
@@ -24,4 +25,4 @@ COPY --chown=node:node . /usr/src/app
 
 EXPOSE 8080
 
-CMD ["dumb-init", "node", "server.js"]
+CMD ["pm2-runtime" , "server.js"]
