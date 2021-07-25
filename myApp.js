@@ -6,12 +6,12 @@ var app = express();
 app.use('/public',express.static(__dirname+"/public"));
 
 app.get('/json',(req,res)=>{
-    var stileMsg = process.env.MESSAGE_STYLE || '';
+    var stileMsg = process.env.MESSAGE_STYLE || undefined;
     var response='';
-    if (stileMsg==='uppercase')
-        response="Hello json".toUpperCase();
+    if (!stileMsg)
+        response="Hello json";
     else
-        response="Hello json"
+        response="Hello json".toUpperCase();
     res.send({"message": response});
 })
 app.get('/',(req,res)=>{
