@@ -6,8 +6,8 @@ var app = express();
 app.use('/public',express.static(__dirname+"/public"));
 
 app.get('/json',(req,res)=>{
-    console.log(process.env.MESSAGE_STYLE);
-    if (process.env.MESSAGE_STYLE==='uppercase')
+    var stileMsg = process.env.MESSAGE_STYLE || '';
+    if (stileMsg==='uppercase')
         res.send({"message": "HELLO JSON"});
     else
         res.send({"message": "Hello json"});
