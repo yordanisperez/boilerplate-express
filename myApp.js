@@ -13,7 +13,7 @@ app.get('/json',(req,res)=>{
     else
         response="Hello json".toUpperCase();
     console.log(response);
-    res.send({"message":response});
+    res.json({"message":response});
  
 })
 app.get('/',(req,res)=>{
