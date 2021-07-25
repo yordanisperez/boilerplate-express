@@ -13,6 +13,7 @@ app.get('/json',(req,res)=>{
     else
         response="Hello json".toUpperCase();
     res.send({"message": response});
+ 
 })
 app.get('/',(req,res)=>{
     res.sendFile(__dirname+"/views/index.html");

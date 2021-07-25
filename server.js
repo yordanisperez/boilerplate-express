@@ -10,16 +10,21 @@ var app = express();
 
 if (!process.env.DISABLE_XORIGIN) {
   app.use(function(req, res, next) {
-    var allowedOrigins = ['https://narrow-plane.gomix.me', 'https://www.freecodecamp.com'];
+    var allowedOrigins = ['https://narrow-plane.gomix.me', 'https://www.freecodecamp.org'];
     var origin = req.headers.origin || '*';
     if(!process.env.XORIG_RESTRICT || allowedOrigins.indexOf(origin) > -1){
+
          res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
       // Encabecedados que permites (ej. 'X-Requested-With,content-type')
          res.setHeader('Access-Control-Allow-Headers', '*');
-
-         console.log(origin);
          //res.setHeader('Access-Control-Allow-Origin', origin);
          res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+         console.log('Permitir: ',origin);
+    }
+    else
+    {
+      console.log('No permitir Origen: ',origin)
     }
     next();
   });
