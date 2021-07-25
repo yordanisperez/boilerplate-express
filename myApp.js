@@ -7,12 +7,13 @@ app.use('/public',express.static(__dirname+"/public"));
 
 app.get('/json',(req,res)=>{
     var stileMsg = process.env.MESSAGE_STYLE || undefined;
-    var response='';
+    let response='';
     if (!stileMsg)
         response="Hello json";
     else
         response="Hello json".toUpperCase();
-    res.send({"message": response});
+    console.log(response);
+    res.send({"message":response});
  
 })
 app.get('/',(req,res)=>{
