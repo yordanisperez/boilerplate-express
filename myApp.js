@@ -5,6 +5,12 @@ var app = express();
 
 app.use('/public',express.static(__dirname+"/public"));
 
+app.use((req,resp,next)=>{
+  console.log(req.method+' '+req.path+ '-'+' '+req.ip);
+  next();
+
+})
+
 app.get('/json',(req,res)=>{
     var stileMsg = process.env.MESSAGE_STYLE || undefined;
     let response='';
