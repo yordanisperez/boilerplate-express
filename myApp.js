@@ -30,13 +30,13 @@ app.get('/json',(req,res)=>{
     console.log(response);
     res.json({"message":response});
  
-})
+})*/
 app.get('/',(req,res)=>{
     res.sendFile(__dirname+"/views/index.html");
 })
 
-console.log("Hello World");
-*/
+//console.log("Hello World");
+
 
 
 
