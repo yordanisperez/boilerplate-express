@@ -11,6 +11,15 @@ app.use((req,resp,next)=>{
 
 })
 
+app.get("/:word/echo", (req, res) => {
+    const { word } = req.params;
+    res.json({
+      echo: word
+    });
+  });
+
+
+
 app.get('/json',(req,res)=>{
     var stileMsg = process.env.MESSAGE_STYLE || undefined;
     let response='';
