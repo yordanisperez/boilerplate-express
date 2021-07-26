@@ -10,7 +10,7 @@ app.use((req,resp,next)=>{
   next();
 
 })
-*/
+
 app.get("/:word/echo", (req, res) => {
     const { word } = req.params;
     res.json({
@@ -19,7 +19,7 @@ app.get("/:word/echo", (req, res) => {
   });
 
 
-/*
+
 app.get('/json',(req,res)=>{
     var stileMsg = process.env.MESSAGE_STYLE || undefined;
     let response='';
@@ -31,6 +31,15 @@ app.get('/json',(req,res)=>{
     res.json({"message":response});
  
 })*/
+
+app.route('/name')
+    .get((req,resp)=>{
+    resp.json({'name':req.query.first+' '+req.query.last})
+})
+.post((req,resp)=>{
+    const {first , last}=req.body
+    resp.json({'name':first+' '+last});
+})
 app.get('/',(req,res)=>{
     res.sendFile(__dirname+"/views/index.html");
 })
