@@ -4,13 +4,13 @@ var express = require('express');
 var app = express();
 
 app.use('/public',express.static(__dirname+"/public"));
-
+/*
 app.use((req,resp,next)=>{
   console.log(req.method+' '+req.path+ '-'+' '+req.ip);
   next();
 
 })
-
+*/
 app.get("/:word/echo", (req, res) => {
     const { word } = req.params;
     res.json({
@@ -19,7 +19,7 @@ app.get("/:word/echo", (req, res) => {
   });
 
 
-
+/*
 app.get('/json',(req,res)=>{
     var stileMsg = process.env.MESSAGE_STYLE || undefined;
     let response='';
@@ -36,7 +36,7 @@ app.get('/',(req,res)=>{
 })
 
 console.log("Hello World");
-
+*/
 
 
 
