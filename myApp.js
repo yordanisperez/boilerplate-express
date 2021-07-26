@@ -3,6 +3,7 @@
 var express = require('express');
 var app = express();
 
+app.use(express.urlencoded({ extended: true }));
 app.use('/public',express.static(__dirname+"/public"));
 /*
 app.use((req,resp,next)=>{
